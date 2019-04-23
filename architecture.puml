@@ -1,0 +1,18 @@
+@startuml
+title Architecture
+
+node "FRONTEND" {
+  [Web App]
+}
+
+node "BACKEND" {
+  [Cat Service]
+  database "Postgres" {
+    [Cat Storage]
+  }
+}
+
+[Web App] <--> [Cat Service] : REST
+[Cat Service] - [Cat Storage]
+
+@enduml
