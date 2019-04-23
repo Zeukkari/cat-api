@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "pg": "^7.10.0",
@@ -19,7 +20,10 @@
     "sequelize": "^5.7.4"
   },
   "devDependencies": {
-    "dotenv": "^7.0.0",
     "nodemon": "^1.18.11"
+  },
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.3.0"
   }
 }
