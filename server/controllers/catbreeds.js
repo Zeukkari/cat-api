@@ -27,7 +27,7 @@ module.exports = {
       limit: 10,
       where: {
         name: {
-          [Op.like]: `%${req.body.search}%`,
+          [Op.like]: `%${req.query.search}%`,
         },
       },
       attributes: ['id', 'name', 'description', 'temperament', 'origin'],
