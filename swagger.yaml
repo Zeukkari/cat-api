@@ -1,0 +1,105 @@
+swagger: '2.0'
+info:
+  description: 'Cat API.'
+  version: '1.0.0'
+  title: 'Swagger Cat API'
+tags:
+  - name: 'cat'
+    description: 'Cat API'
+schemes:
+  - 'https'
+  - 'http'
+paths:
+  /cats:
+    get:
+      tags:
+        - 'cat'
+      summary: 'Get all breeds'
+      description: 'Returns a list of cat breeds'
+      operationId: 'getAllBreeds'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Cat'
+        400:
+          description: 'Invalid status value'
+
+  /cats/search:
+    get:
+      tags:
+        - 'cat'
+      summary: 'Search cat breeds by name'
+      description: 'Returns a list of cat breeds'
+      operationId: 'searchCatsByName'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'search'
+          in: 'query'
+          description: 'Search values that need to be considered for filter'
+          required: true
+          type: 'string'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Cat'
+        400:
+          description: 'Invalid status value'
+
+  /cats/{catId}:
+    get:
+      tags:
+        - 'cat'
+      summary: 'Get a breed by id'
+      description: 'Returns a single cat breed'
+      operationId: 'getPetById'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'catId'
+          in: 'path'
+          description: 'ID of pet to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        200:
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/Cat'
+        400:
+          description: 'Invalid ID supplied'
+        404:
+          description: 'Cat not found'
+
+definitions:
+  Cat:
+    type: 'object'
+    required:
+      - 'name'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      name:
+        type: 'string'
+        example: 'mixed'
+      description:
+        type: 'string'
+        example: 'this is a cool cat'
+      origin:
+        type: 'string'
+        example: 'Pitäjänmäki'
+    xml:
+      name: 'Cat'
