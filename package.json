@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cd client && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd client && npm install"
   },
   "keywords": [],
   "author": "Timo Aho",
@@ -18,11 +20,11 @@
     "express-graphql": "^0.8.0",
     "graphql": "^14.2.1",
     "morgan": "^1.9.1",
+    "node-fetch": "^2.3.0",
     "nodemon": "^1.18.11",
     "pg": "^7.10.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^5.7.4",
-    "swagger-to-graphql": "^1.4.5"
+    "sequelize": "^5.7.4"
   },
   "engines": {
     "node": "10.15.3",
