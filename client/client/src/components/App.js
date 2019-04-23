@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import moment from 'moment'
-
+import TextField from '@material-ui/core/TextField'
 import AutocompleteInput from './AutocompleteInput'
 import ScrollableTabsButtonAuto from './ScrollableTabsButtonAuto'
 import Table from './EnhancedTable'
@@ -17,7 +17,33 @@ const Placeholder = ({ children }) => (
 )
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.stations = []
+    this.state = {
+      searchVal: '',
+      currentStation: null,
+    }
+    this.handleSearch = this.handleSearch.bind(this)
+  }
+
+  handleSearch = search => {
+    if (search !== undefined) {
+      this.setState(state => ({
+        search: search,
+      }))
+    }
+  }
+
+  handleChange = name => event => {
+    console.log('handleChange', name, event)
+    this.setState({ [name]: event.target.value })
+  }
+
   render() {
+    const { classes } = this.props
+    console.log('classes: ', classes)
     /*
     return (
       <Fragment>
@@ -27,7 +53,23 @@ export default class App extends Component {
     */
     return (
       <Layout>
-        <Query query={CATS_QUERY}>
+        <form noValidate autoComplete='off'>
+          <TextField
+            id='standard-uncontrolled'
+            label='Search by name'
+            defaultValue=''
+            onChange={this.handleChange('name')}
+            margin='normal'
+          />
+          <TextField
+            id='standard-uncontrolled'
+            label='Filter by origin'
+            defaultValue=''
+            onChange={this.handleChange('filter')}
+            margin='normal'
+          />
+        </form>
+        <Query query={CATS_QUERY} variables={{ search: this.state.name }}>
           {({ data, loading, error, refetch }) => {
             console.log(
               'data, loading, error, refetch',
@@ -51,8 +93,8 @@ export default class App extends Component {
               )
             }
             if (data) {
-              console.log('setting cats: ', data.Cats)
-              return <Table data={data.Cats} />
+              console.log('setting cats: ', data.SearchCats)
+              return <Table data={data.SearchCats} filter={this.state.filter} />
             } else {
               console.log('why no cats? ', data)
               return <LinearBuffer />
@@ -99,8 +141,8 @@ export default class App extends Component {
 }
 
 export const CATS_QUERY = gql`
-  query StationQuery {
-    Cats {
+  query CatQuery($search: String = "") {
+    SearchCats(search: $search) {
       name
       description
       temperament

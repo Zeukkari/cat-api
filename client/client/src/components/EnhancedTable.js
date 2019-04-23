@@ -215,8 +215,8 @@ class EnhancedTable extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.setState(state => ({ ...state, data: this.props.data }))
+  componentWillReceiveProps(nextProps) {
+    this.setState({ data: nextProps.data })
   }
 
   handleRequestSort = (event, property) => {
@@ -273,8 +273,11 @@ class EnhancedTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1
 
   render() {
-    const { currentStation, type, classes } = this.props
+    const { filter, currentStation, type, classes } = this.props
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state
+    const filteredData = filter
+      ? data.filter(item => item.origin === filter)
+      : data
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage)
 
@@ -294,7 +297,7 @@ class EnhancedTable extends React.Component {
               currentStation={currentStation}
             />
             <TableBody>
-              {stableSort(data, getSorting(order, orderBy))
+              {stableSort(filteredData, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(data => {
                   return (
