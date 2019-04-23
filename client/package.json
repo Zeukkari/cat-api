@@ -1,5 +1,5 @@
 {
-  "name": "rataopas-frontend",
+  "name": "cat-breed-list",
   "version": "1.0.0",
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -32,16 +32,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build ..",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook"
+    "eject": "react-scripts eject"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "proxy": "https://rata.digitraffic.fi/api/v1/graphql"
+  ]
 }

@@ -16,7 +16,7 @@ function SimpleAppBar(props) {
     <AppBar position='static' className={classes.appBar}>
       <Toolbar>
         <Typography variant='h6' color='inherit'>
-          Aseman junatiedot
+          CAT BREED LIST
         </Typography>
       </Toolbar>
     </AppBar>

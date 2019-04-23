@@ -12,11 +12,11 @@ import TableSortLabel from '@material-ui/core/TableSortLabel'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
-import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
-import DeleteIcon from '@material-ui/icons/Delete'
-import FilterListIcon from '@material-ui/icons/FilterList'
 import { lighten } from '@material-ui/core/styles/colorManipulator'
+import TextField from '@material-ui/core/TextField'
+
+import Loader from './Loader'
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -125,6 +125,9 @@ EnhancedTableHead.propTypes = {
 const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingLeft: theme.spacing.unit,
   },
   highlight:
     theme.palette.type === 'light'
@@ -148,7 +151,14 @@ const toolbarStyles = theme => ({
 })
 
 let EnhancedTableToolbar = props => {
-  const { numSelected, classes } = props
+  const {
+    filter,
+    search,
+    numSelected,
+    classes,
+    handleChange,
+    handleSearch,
+  } = props
 
   return (
     <Toolbar
@@ -156,22 +166,24 @@ let EnhancedTableToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title='Delete'>
-            <IconButton aria-label='Delete'>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title='Filter list'>
-            <IconButton aria-label='Filter list'>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
+      <form noValidate autoComplete='off' align='center'>
+        <TextField
+          id='standard-uncontrolled'
+          label='Search by name'
+          value={search}
+          onChange={handleSearch}
+          margin='normal'
+          variant='outlined'
+        />
+        <TextField
+          id='standard-uncontrolled'
+          label='Filter by origin'
+          value={filter}
+          onChange={handleChange('filter')}
+          margin='normal'
+          variant='outlined'
+        />
+      </form>
     </Toolbar>
   )
 }
@@ -207,12 +219,21 @@ class EnhancedTable extends React.Component {
 
     this.state = {
       order: 'asc',
-      orderBy: 'sortTime',
+      orderBy: 'name',
       selected: [],
-      data: props.data,
+      data: [],
       page: 0,
       rowsPerPage: 10,
+      filter: '',
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange = name => event => {
+    const value = event.target.value
+    this.setState({
+      filter: value,
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -273,8 +294,24 @@ class EnhancedTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1
 
   render() {
-    const { filter, currentStation, type, classes } = this.props
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state
+    const {
+      search,
+      currentStation,
+      type,
+      classes,
+      handleSearch,
+      loading,
+    } = this.props
+    const {
+      data,
+      filter,
+      order,
+      orderBy,
+      selected,
+      rowsPerPage,
+      page,
+    } = this.state
+
     const filteredData = filter
       ? data.filter(item => item.origin === filter)
       : data
@@ -283,8 +320,15 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          handleChange={this.handleChange}
+          handleSearch={handleSearch}
+          filter={filter}
+          search={search}
+        />
         <div className={classes.tableWrapper}>
+          {loading && <Loader />}
           <Table className={classes.table} aria-labelledby='tableTitle'>
             <EnhancedTableHead
               numSelected={selected.length}

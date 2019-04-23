@@ -6,14 +6,14 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createMuiTheme } from '@material-ui/core/styles'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-import green from '@material-ui/core/colors/green'
+import blue from '@material-ui/core/colors/blue'
 import App from './components/App'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: green[600],
+      main: blue[600],
       dark: '#002884',
       contrastText: '#fff',
     },

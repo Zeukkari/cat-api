@@ -45,7 +45,6 @@ const QueryType = new GraphQLObjectType({
         fetch(`${BASE_URL}/cats`)
           .then(response => response.json())
           .then(data => {
-            console.log('data: ', data)
             return data
           }),
     },
