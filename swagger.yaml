@@ -1,11 +1,10 @@
 swagger: '2.0'
 info:
-  description: 'Cat API.'
+  description: 'Swagger-speksi harkkaprojekti4:sta varten.'
   version: '1.0.0'
-  title: 'Swagger Cat API'
-tags:
-  - name: 'cat'
-    description: 'Cat API'
+  title: 'Cat API'
+host: 'radiant-wave-74426.herokuapp.com'
+basePath: '/api'
 schemes:
   - 'https'
   - 'http'
@@ -103,3 +102,6 @@ definitions:
         example: 'Pitäjänmäki'
     xml:
       name: 'Cat'
+externalDocs:
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'
