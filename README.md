@@ -1,4 +1,4 @@
-# Fullstack Developer Assignment
+# Fullstack Developer Assignment ![Build Status](https://travis-ci.com/Zeukkari/harkkaprojekti4.svg?branch=master)
 
 ## Backend: Cat API
 
