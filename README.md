@@ -24,3 +24,13 @@ Breed:
 ## Frontend
 
 Suggested technologies: React
+
+
+
+## Architecture
+
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/architecture.puml)
+
+## ER-malli
+
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/database.puml)
