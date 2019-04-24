@@ -29,7 +29,7 @@ Suggested technologies: React
 
 ## Architecture
 
-![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/architecture.puml)
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/arch.puml)
 
 ## Data Model
 
