@@ -36,6 +36,7 @@ module.exports = {
       .catch(error => res.status(400).send(error))
   },
   // Convenience methods
+  /*
   create(req, res) {
     return CatBreed.create({
       name: req.body.name,
@@ -61,4 +62,5 @@ module.exports = {
       })
       .catch(error => res.status(400).send(error))
   },
+  */
 }

@@ -9,7 +9,7 @@ module.exports = app => {
 
   app.get('/api/cats', catsController.list)
   app.get('/api/cats/search', catsController.search)
-  app.post('/api/cats', catsController.create)
+  // app.post('/api/cats', catsController.create)
   app.get('/api/cats/:catId', catsController.retrieve)
-  app.delete('/api/cats/:catId', catsController.destroy)
+  // app.delete('/api/cats/:catId', catsController.destroy)
 }
