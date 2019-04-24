@@ -31,6 +31,6 @@ Suggested technologies: React
 
 ![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/architecture.puml)
 
-## ER-malli
+## Data Model
 
 ![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/database.puml)
