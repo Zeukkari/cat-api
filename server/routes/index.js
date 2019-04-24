@@ -1,7 +1,7 @@
 const catsController = require('../controllers').catbreeds
 
-module.exports = (app: any) => {
-  app.get('/api', (req: any, res: any) =>
+module.exports = app => {
+  app.get('/api', (req, res) =>
     res.status(200).send({
       message: 'Welcome to the Cat API!',
     }),

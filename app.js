@@ -26,7 +26,7 @@ app.use(
 )
 
 require('./server/routes')(app)
-app.get('*', (req: any, res: any) =>
+app.get('*', (req, res) =>
   res.status(200).send({
     message: 'Welcome to the beginning of nothingness.',
   }),

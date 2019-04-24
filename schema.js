@@ -1,5 +1,5 @@
 const graphql = require('graphql')
-import 'cross-fetch/polyfill'
+const fetch = require('node-fetch')
 const GraphQLObjectType = graphql.GraphQLObjectType
 const GraphQLString = graphql.GraphQLString
 const GraphQLList = graphql.GraphQLList
@@ -44,7 +44,9 @@ const QueryType = new GraphQLObjectType({
       resolve: (root, args) =>
         fetch(`${BASE_URL}/cats`)
           .then(response => response.json())
-          .then(data => data),
+          .then(data => {
+            return data
+          }),
     },
     Cat: {
       type: CatType,
