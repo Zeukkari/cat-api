@@ -2,17 +2,22 @@
 title Architecture
 
 node "FRONTEND" {
-  [Web App]
+  [React App]
 }
 
 node "BACKEND" {
+  [GraphQL Gateway]
   [Cat Service]
   database "Postgres" {
     [Cat Storage]
   }
 }
 
-[Web App] <--> [Cat Service] : REST
+[Cat Service] --> [GraphQL Gateway]
 [Cat Service] - [Cat Storage]
+[React App] --> [GraphQL Gateway] : GraphQL
+[GraphQL Gateway] -left-> [React App]
+[GraphQL Gateway] --> [Cat Service] : REST
+
 
 @enduml
