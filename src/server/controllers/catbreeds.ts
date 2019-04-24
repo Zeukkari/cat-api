@@ -1,5 +1,4 @@
-const Sequelize = require('sequelize')
-const Op = Sequelize.Op
+import { Op } from 'sequelize'
 const CatBreed = require('../models').CatBreed
 
 module.exports = {
