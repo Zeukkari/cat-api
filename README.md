@@ -1,4 +1,4 @@
-# Fullstack Developer Assignment
+# Fullstack Developer Assignment ![Build Status](https://travis-ci.com/Zeukkari/harkkaprojekti4.svg?branch=master)
 
 ## Backend: Cat API
 
@@ -24,3 +24,13 @@ Breed:
 ## Frontend
 
 Suggested technologies: React
+
+
+
+## Architecture
+
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/architecture.puml)
+
+## ER-malli
+
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/database.puml)
