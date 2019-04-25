@@ -27,8 +27,10 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 })
 
-const GRAPHQL_ENDPOINT = 'https://radiant-wave-74426.herokuapp.com/graphql'
-// const GRAPHQL_ENDPOINT = 'http://localhost:8000/graphql'
+const GRAPHQL_ENDPOINT =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8000/graphql'
+    : 'https://radiant-wave-74426.herokuapp.com/graphql'
 
 const link = createHttpLink({
   uri: GRAPHQL_ENDPOINT,

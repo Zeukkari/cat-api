@@ -1,2 +1,2 @@
 console.log("server starting...")
-const app = require('../dist/server');
+const app = require("../dist/app");

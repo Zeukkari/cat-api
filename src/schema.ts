@@ -1,7 +1,14 @@
 import 'cross-fetch/polyfill'
 import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLSchema } from 'graphql'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
-const BASE_URL = process.env.BASE_URL || '/api'
+const BASE_URL = process.env.BASE_URL
+
+if (BASE_URL === undefined) {
+  throw 'ERROR: BASE_URL missing'
+  process.exit()
+}
 
 const CatType = new GraphQLObjectType({
   name: 'Cat',
@@ -40,7 +47,7 @@ const QueryType = new GraphQLObjectType({
       resolve: (root, args) =>
         fetch(`${BASE_URL}/cats`)
           .then(response => response.json())
-          .then(data => data)
+          .then(data => data.cats)
     },
     Cat: {
       type: CatType,
@@ -52,7 +59,7 @@ const QueryType = new GraphQLObjectType({
       resolve: (root, args) =>
         fetch(`${BASE_URL}/cats/${args.id}`)
           .then(response => response.json())
-          .then(data => data)
+          .then(data => data.cat)
     },
     SearchCats: {
       type: new GraphQLList(CatType),
@@ -69,9 +76,7 @@ const QueryType = new GraphQLObjectType({
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
           .then(response => response.json())
-          .then(data => {
-            return data
-          })
+          .then(data => data.cats)
       }
     }
   })
