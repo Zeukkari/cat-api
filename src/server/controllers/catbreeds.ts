@@ -1,65 +1,59 @@
 import { Op } from 'sequelize'
-const CatBreed = require('../models').CatBreed
+import { CatBreed } from '../models/'
 
 module.exports = {
-  retrieve(req, res) {
-    return CatBreed.findByPk(req.params.catId)
-      .then(cat => {
-        if (!cat) {
-          return res.status(404).send({
-            message: 'Cat Not Found',
-          })
-        }
-        return res.status(200).send(cat)
+  async retrieve({ req, res }: { req: any; res: any; }) {
+    try {
+      const cat = await CatBreed.findByPk(req.params.catId)
+      if (!cat) {
+        return res.status(404).send({
+          message: 'Cat Not Found',
+        })
+      }
+      return res.status(200).send(cat)
+    } catch (error) {
+      return res.status(400).send(error)
+    }
+  },
+  async list(req: any, res: { status: { (arg0: number): { send: (arg0: CatBreed[]) => void; }; (arg0: number): { send: (arg0: any) => void; }; }; }) {
+    try {
+      const cats = await CatBreed.findAll({
+        attributes: ['id', 'name', 'description', 'temperament', 'origin'],
       })
-      .catch(error => res.status(400).send(error))
+      return res.status(200).send(cats)
+    } catch (error) {
+      return res.status(400).send(error)
+    }
   },
-  list(req, res) {
-    return CatBreed.findAll({
-      attributes: ['id', 'name', 'description', 'temperament', 'origin'],
-    })
-      .then(cats => res.status(200).send(cats))
-      .catch(error => res.status(400).send(error))
-  },
-  search(req, res) {
-    return CatBreed.findAll({
-      limit: 10,
-      where: {
-        name: {
-          [Op.like]: `%${req.query.search}%`,
+  async search({ req, res }: {
+    req: {
+      query: {
+        search: any;
+      };
+    }; res: {
+      status: {
+        (arg0: number): {
+          send: (arg0: CatBreed[]) => void;
+        };
+        (arg0: number): {
+          send: (arg0: any) => void;
+        };
+      };
+    };
+  }) {
+    try {
+      const cats = await CatBreed.findAll({
+        limit: 10,
+        where: {
+          name: {
+            [Op.like]: `%${req.query.search}%`,
+          },
         },
-      },
-      attributes: ['id', 'name', 'description', 'temperament', 'origin'],
-    })
-      .then(cats => res.status(200).send(cats))
-      .catch(error => res.status(400).send(error))
-  },
-  // Convenience methods
-  /*
-  create(req, res) {
-    return CatBreed.create({
-      name: req.body.name,
-      description: req.body.description,
-      temperament: req.body.temperament,
-      origin: req.body.origin,
-    })
-      .then(catBreed => res.status(201).send(catBreed))
-      .catch(error => res.status(400).send(error))
-  },
-  destroy(req, res) {
-    return CatBreed.findByPk(req.params.catId)
-      .then(cat => {
-        if (!cat) {
-          return res.status(400).send({
-            message: 'Cat Not Found',
-          })
-        }
-        return cat
-          .destroy()
-          .then(() => res.status(204).send())
-          .catch(error => res.status(400).send(error))
+        attributes: ['id', 'name', 'description', 'temperament', 'origin'],
       })
-      .catch(error => res.status(400).send(error))
+      return res.status(200).send(cats)
+    } catch (error) {
+      return res.status(400).send(error)
+    }
   },
-  */
 }

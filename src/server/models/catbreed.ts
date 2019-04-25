@@ -1,22 +1,26 @@
-'use strict'
-module.exports = (sequelize: any, DataTypes: any) => {
-  const CatBreed = sequelize.define(
-    'CatBreed',
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      name: DataTypes.STRING,
-      description: DataTypes.STRING,
-      temperament: DataTypes.STRING,
-      origin: DataTypes.STRING,
-    },
-    {},
-  )
-  CatBreed.associate = function(models: any) {
-    // associations can be defined here
-  }
-  return CatBreed
+import { Model, Column, Table, CreatedAt, UpdatedAt } from 'sequelize-typescript'
+
+@Table
+export class CatBreed extends Model<CatBreed> {
+
+  @Column
+  name!: string
+
+  @Column
+  temperament?: string
+
+  @Column
+  description?: string
+
+  @Column
+  origin?: string
+
+  @CreatedAt
+  @Column
+  createdAt!: Date
+
+  @UpdatedAt
+  @Column
+  updatedAt!: Date
+
 }

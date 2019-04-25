@@ -1,0 +1,8 @@
+{
+  "extends": "tslint-config-standard",
+  "rules": {
+    "trailing-comma": true,
+    "await-promise": false,
+    "space-before-function-paren": false
+  }
+}
