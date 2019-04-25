@@ -1,5 +1,4 @@
-import * as Sequelize from 'sequelize';
-import { SequelizeAttributes } from '../typings/SequelizeAttributes';
+import { Column, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
 
 export interface CatAttributes {
   id?: number;
@@ -11,30 +10,28 @@ export interface CatAttributes {
   updatedAt?: Date;
 };
 
-export interface CatInstance extends Sequelize.Instance<CatAttributes>, CatAttributes {
 
-};
+@Table
+export class Cats extends Model<Cats> {
 
-export const CatFactory = (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes): Sequelize.Model<CatInstance, CatAttributes> => {
-  const attributes: SequelizeAttributes<CatAttributes> = {
-    name: {
-      type: DataTypes.STRING
-    },
-    description: {
-      type: DataTypes.STRING
-    },
-    origin: {
-      type: DataTypes.STRING
-    },
-    temperament: {
-      type: DataTypes.STRING
-    }
-  };
+  @Column
+  name!: string;
 
-  const Cat = sequelize.define<CatInstance, CatAttributes>('Cat', attributes);
+  @Column
+  origin!: string;
 
-  Cat.associate = models => {
-  };
+  @Column
+  description!: string;
 
-  return Cat;
-};
+  @Column
+  temperament!: string;
+
+  @CreatedAt
+  @Column
+  createdAt!: Date;
+
+  @UpdatedAt
+  @Column
+  updatedAt!: Date;
+
+}

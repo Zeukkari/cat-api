@@ -47,7 +47,7 @@ const QueryType = new GraphQLObjectType({
       resolve: (root, args) =>
         fetch(`${BASE_URL}/cats`)
           .then(response => response.json())
-          .then(data => data.cats)
+          .then(data => data)
     },
     Cat: {
       type: CatType,
@@ -59,7 +59,7 @@ const QueryType = new GraphQLObjectType({
       resolve: (root, args) =>
         fetch(`${BASE_URL}/cats/${args.id}`)
           .then(response => response.json())
-          .then(data => data.cat)
+          .then(data => data)
     },
     SearchCats: {
       type: new GraphQLList(CatType),
@@ -76,7 +76,7 @@ const QueryType = new GraphQLObjectType({
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
           .then(response => response.json())
-          .then(data => data.cats)
+          .then(data => data)
       }
     }
   })
