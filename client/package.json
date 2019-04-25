@@ -1,28 +1,19 @@
 {
   "name": "cat-breed-list",
   "version": "1.0.0",
-  "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@storybook/react": "^5.0.10",
-    "babel-loader": "^8.0.5"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@material-ui/core": "^3.9.3",
-    "@material-ui/icons": "^3.0.2",
-    "apollo-boost": "^0.3.1",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
     "classnames": "^2.2.6",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
-    "lodash": "^4.17.11",
-    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-apollo": "2.5.4",
     "react-dom": "16.8.6",
-    "react-router-dom": "4.4.0-beta.8",
     "react-scripts": "3.0.0"
   },
   "scripts": {
