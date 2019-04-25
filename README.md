@@ -1,5 +1,39 @@
 # Fullstack Developer Assignment ![Build Status](https://travis-ci.com/Zeukkari/harkkaprojekti4.svg?branch=master)
 
+## Getting Started
+
+Install node.js v10.x.x.
+
+Set up PostgreSQL server somewhere. The demo deployment of this project uses [https://www.elephantsql.com/](https://www.elephantsql.com/)
+
+```
+cp .env.EXAMPLE .env
+```
+
+Edit .env file and update DATABASE_URL field to point to your database instance.
+
+Install dependencies:
+
+```
+npm install
+```
+
+Build client:
+
+```
+npm run build:client
+```
+
+Start development server:
+
+```
+npm run serve
+```
+
+The demo should now be accessible at (http://localhost:8000/index.html)[http://localhost:8000/index.html].
+
+There's also a graphiql playground available at (http://localhost:8000/graphql)[http://localhost:8000/graphql].
+
 ## Backend: Cat API
 
 Suggested technologies: Node.js, GraphQl, MongoDB/PostgreSQL, Typescript
@@ -24,8 +58,6 @@ Breed:
 ## Frontend
 
 Suggested technologies: React
-
-
 
 ## Architecture
 
