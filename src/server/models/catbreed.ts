@@ -1,5 +1,5 @@
 'use strict'
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize: any, DataTypes: any) => {
   const CatBreed = sequelize.define(
     'CatBreed',
     {
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {},
   )
-  CatBreed.associate = function(models) {
+  CatBreed.associate = function(models: any) {
     // associations can be defined here
   }
   return CatBreed
