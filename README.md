@@ -30,9 +30,9 @@ Start development server:
 npm run serve
 ```
 
-The demo should now be accessible at (http://localhost:8000/index.html)[http://localhost:8000/index.html].
+The demo should now be accessible at [http://localhost:8000/index.html](http://localhost:8000/index.html).
 
-There's also a graphiql playground available at (http://localhost:8000/graphql)[http://localhost:8000/graphql].
+There's also a graphiql playground available at [http://localhost:8000/graphql](http://localhost:8000/graphql).
 
 ## Backend: Cat API
 
