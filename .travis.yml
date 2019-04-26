@@ -1,8 +1,9 @@
 language: node_js
 node_js:
-- '10'
+  - '10'
 script:
-- npm run build
+  - npm test
+  - npm run build
 env:
   global:
     secure: 2CswP90kLhFgGhvnJZLoWxUb6TgssJjVUYFgXo7/g0mQu2nkp5v0rZMpeL99daSMrxGDNrPW4iQn2l5lxe2RtDhxglY7j8F+AlwcPJ5JAZ0YCbz3Fzojnjta9lYWQCUnKIFLXNSWVILwYOm34racOeHwZ+G3+pnH14c3ivDgUIKFv83dxg0AQq6rbbU0dZild6eBJToglzz7/HtIHprS+HKpzwJhDdxf10JTcTCE7ly9neGb8oR8Ng1aY2UyBADhJkTI9cLNdSClud03qckkrUVltjHj2yT0450Lr3JH9P/LU7xfUm30empbEVpC3v22cCC2YLOBU44RfHpVd2os9fKBsKpbbvQhf5TTjaJ88xFtIuA4Y6YFuZOEekHIamjl6a2Jc+NEd4Xw/ZADgRzFnrq5yVrukXk++gEaxWXF5kxVLC3SasbxCQ4paEUGuqE64PPX8v/BbSUMrPjutGkFDzzdE83mSCD6X2CCQmsK/BkP+bklkGMKIB5sriuJRDIWZrRRpiy3od9pz3qXShH8hWqjal4zv94098KmHHiqlxNqalCk/GKUT7MfoYIjF+ZEXmJc1kYiW4pfVsdzZp7mn//O1EDq4vsFKPsP39/ECaKqucjV6xcdK0D6ThPsU2Zcu1ZpKibTgktrUUAzNOHeJdFOs3eK82JUbEZ8QZI1E7k=
