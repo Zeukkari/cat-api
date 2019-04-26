@@ -12,6 +12,8 @@ export const server = (async () => {
       port,
       () => console.info(`Server running on port ${port}`)
     );
-})()
+})
+
+server()
 
 export default server

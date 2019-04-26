@@ -6,6 +6,7 @@ import { Request, Response } from 'express';
 import * as GraphQLHTTP from 'express-graphql'
 import { list, search, create, get, remove } from './routes'
 
+
 export const app: express.Application = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))

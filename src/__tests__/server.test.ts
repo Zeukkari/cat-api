@@ -23,9 +23,16 @@ describe("Server test", () => {
 });
 
 describe('Test the root path', () => {
+
+  let db
   beforeAll(async () => {
-    await initDB()
+    db = await initDB()
   })
+
+  afterAll(async () => {
+    db.close()
+  })
+
 
   test('It should response the GET method', async () => {
     const response = await request(app).get('/api');
@@ -50,7 +57,6 @@ describe('Test the root path', () => {
   test('It should return a single cat', async () => {
     const response = await request(app).get('/api/cats/1');
     expect(response.statusCode).toBe(200);
-    console.log("response.body: ", response.body)
     expect(response.body).toMatchObject({
       "name": "test",
       "description": "test",

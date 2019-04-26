@@ -47,7 +47,7 @@
     },
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "tsconfig.json"
+        "tsConfig": "tsconfig.json"
       }
     },
     "testMatch": [
@@ -75,6 +75,7 @@
     "graphql-tools": "^4.0.4",
     "jest": "^24.7.1",
     "sequelize-test-helpers": "^1.1.0",
+    "sinon": "^7.3.2",
     "superagent": "^5.0.3",
     "supertest": "^4.0.2",
     "ts-node": "^8.1.0",
