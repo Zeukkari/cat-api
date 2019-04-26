@@ -1,5 +1,9 @@
 # Cat API / fullstack exercise ![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master)
 
+Demo: https://radiant-wave-74426.herokuapp.com/
+
+GraphQL playground: https://radiant-wave-74426.herokuapp.com/graphql
+
 ## Getting Started
 
 Install node.js v10.x.x.
@@ -61,8 +65,8 @@ Suggested technologies: React
 
 ## Architecture
 
-![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/architecture.puml)
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/cat-api/master/architecture.puml)
 
 ## Data Model
 
-![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/harkkaprojekti4/master/database.puml)
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zeukkari/cat-api/master/database.puml)
