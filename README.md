@@ -1,4 +1,4 @@
-# Fullstack Developer Assignment ![Build Status](https://travis-ci.com/Zeukkari/harkkaprojekti4.svg?branch=master)
+# Cat API / fullstack exercise ![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master)
 
 ## Getting Started
 
