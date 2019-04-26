@@ -1,7 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, createStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -44,7 +43,22 @@ function getSorting(order, orderBy) {
     : (a, b) => -desc(a, b, orderBy)
 }
 
-class EnhancedTableHead extends React.Component {
+interface TableHeadProps {
+  order: any
+  orderBy: any
+  numSelected: any
+  onSelectAllClick: any
+  onRequestSort: any
+  rowCount: any
+  type: any
+  currentStation: any
+}
+interface TableHeadState {}
+
+class EnhancedTableHead extends React.Component<
+  TableHeadProps,
+  TableHeadState
+> {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property)
   }
@@ -113,44 +127,45 @@ class EnhancedTableHead extends React.Component {
   }
 }
 
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-}
-
-const toolbarStyles = theme => ({
-  root: {
-    paddingRight: theme.spacing.unit,
-    display: 'flex',
-    justifyContent: 'center',
-    paddingLeft: theme.spacing.unit,
-  },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
+const toolbarStyles = (theme: any) =>
+  createStyles({
+    root: {
+      paddingRight: theme.spacing.unit,
+      display: 'flex',
+      justifyContent: 'center',
+      paddingLeft: theme.spacing.unit,
+    },
+    highlight:
+      theme.palette.type === 'light'
+        ? {
           color: theme.palette.secondary.main,
           backgroundColor: lighten(theme.palette.secondary.light, 0.85),
         }
-      : {
+        : {
           color: theme.palette.text.primary,
           backgroundColor: theme.palette.secondary.dark,
         },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  actions: {
-    color: theme.palette.text.secondary,
-  },
-  title: {
-    flex: '0 0 auto',
-  },
-})
+    spacer: {
+      flex: '1 1 100%',
+    },
+    actions: {
+      color: theme.palette.text.secondary,
+    },
+    title: {
+      flex: '0 0 auto',
+    },
+  })
 
-let EnhancedTableToolbar = props => {
+interface EnhancedTableToolbarProps {
+  filter: any
+  search: any
+  numSelected: any
+  classes: any
+  handleChange: any
+  handleSearch: any
+}
+
+const PlainEnhancedTableToolbar = props => {
   const {
     filter,
     search,
@@ -166,7 +181,7 @@ let EnhancedTableToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <form noValidate autoComplete='off' align='center'>
+      <form noValidate autoComplete='off'>
         <TextField
           id='standard-uncontrolled'
           label='Search by name'
@@ -188,33 +203,50 @@ let EnhancedTableToolbar = props => {
   )
 }
 
-EnhancedTableToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
+const EnhancedTableToolbar = withStyles(toolbarStyles)(
+  PlainEnhancedTableToolbar,
+)
+
+const styles = (theme: any) =>
+  createStyles({
+    root: {
+      width: '100%',
+      overflowX: 'auto',
+    },
+    table: {
+      minWidth: 240,
+    },
+    tableWrapper: {
+      overflowX: 'auto',
+    },
+    row: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.background.default,
+      },
+    },
+  })
+
+interface TableProps {
+  search: any
+  currentStation: any
+  type: any
+  classes: any
+  handleSearch: any
+  loading: any
 }
 
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar)
+interface TableState {
+  order: any
+  orderBy: any
+  selected: any
+  data: any
+  page: any
+  rowsPerPage: any
+  filter: any
+}
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 240,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
-  row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
-})
-
-class EnhancedTable extends React.Component {
-  constructor(props) {
+class EnhancedTable extends React.Component<TableProps, TableState> {
+  constructor(props: any) {
     super(props)
 
     this.state = {
@@ -327,6 +359,7 @@ class EnhancedTable extends React.Component {
           filter={filter}
           search={search}
         />
+
         <div className={classes.tableWrapper}>
           {loading && <Loader />}
           <Table className={classes.table} aria-labelledby='tableTitle'>
@@ -340,6 +373,7 @@ class EnhancedTable extends React.Component {
               type={type}
               currentStation={currentStation}
             />
+
             <TableBody>
               {stableSort(filteredData, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -398,10 +432,6 @@ class EnhancedTable extends React.Component {
       </Paper>
     )
   }
-}
-
-EnhancedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles)(EnhancedTable)

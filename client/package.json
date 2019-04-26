@@ -1,31 +1,48 @@
 {
   "name": "cat-breed-list",
-  "version": "1.0.0",
-  "devDependencies": {},
+  "version": "1.1.0",
+  "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "@types/classnames": "^2.2.7",
+    "@types/graphql": "^14.2.0",
+    "@types/jest": "24.0.11",
+    "@types/material-ui": "^0.21.6",
+    "@types/node": "11.13.7",
+    "@types/react": "^16.8.14",
+    "@types/react-addons-linked-state-mixin": "^0.14.20",
+    "@types/react-dom": "16.8.4",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
     "classnames": "^2.2.6",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
-    "prop-types": "^15.7.2",
-    "react": "16.8.6",
-    "react-apollo": "2.5.4",
-    "react-dom": "16.8.6",
-    "react-scripts": "3.0.0"
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.5",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.0",
+    "typescript": "3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
