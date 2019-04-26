@@ -1,184 +1,46 @@
-/*
 import { graphql } from 'graphql'
-const request = require('supertest');
-const { app } = require('../app')
-const { initDB } = require('../db')
+import {
+  addMockFunctionsToSchema,
+  mockServer
+} from 'graphql-tools';
+
 import { schema } from '../schema'
-*/
-// the mock service
-const cats = {
-  "data": {
-    "Cats": [
-      {
-        "name": "test",
-        "description": "test",
-        "temperament": "test",
-        "origin": "test"
-      },
-      {
-        "name": "test",
-        "description": "test",
-        "temperament": "test",
-        "origin": "test"
-      },
-      {
-        "name": "Cheetoh",
-        "description": "Spotted",
-        "temperament": "",
-        "origin": "Crossbreed"
-      },
-      {
-        "name": "Cheetohs",
-        "description": "Spotted",
-        "temperament": "",
-        "origin": "Crossbreed"
-      },
-      {
-        "name": "Cheetohsasdasd",
-        "description": "Spotted",
-        "temperament": "",
-        "origin": "Crossbreed"
-      },
-      {
-        "name": "Zebra",
-        "description": "Spotted",
-        "temperament": "",
-        "origin": "Crossbreed"
-      }
-    ]
-  }
-}
 
-const mockService = {
-  allCats: cats
-}
-
-// a nice structure for test cases
-// found at https://hackernoon.com/extensive-graphql-testing-57e8760f1c25
-const getAllCats = {
-  id: 'Test case 1',
+const testCaseA = {
+  id: 'Test case A',
   query: `
-        {
-          Cats {
-            name
-            description
-            temperament
-            origin
-          }
-        }
-
-    `,
-  variables: {},
-
-  // injecting the mock movie service with canned responses
-  context: { service: mockService },
-
-  // expected result
-  expected: {
-    data: {
-      "Cats": [
-        {
-          "name": "test",
-          "description": "test",
-          "temperament": "test",
-          "origin": "test"
-        },
-        {
-          "name": "test",
-          "description": "test",
-          "temperament": "test",
-          "origin": "test"
-        },
-        {
-          "name": "Cheetoh",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        },
-        {
-          "name": "Cheetohs",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        },
-        {
-          "name": "Cheetohsasdasd",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        },
-        {
-          "name": "Zebra",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        }
-      ]
-    }
-  }
-}
-
-const searchCats = {
-  id: 'Search cats "t"',
-  query: `
-    {
-      SearchCats(search:"t") {
+    query {
+      Cats {
         name
         description
         temperament
         origin
       }
     }
-
-    `,
+  `,
   variables: {},
-
-  // injecting the mock movie service with canned responses
-  context: { service: mockService },
-
-  // expected result
+  context: {},
   expected: {
     data: {
-      "SearchCats": [
-        {
-          "name": "test",
-          "description": "test",
-          "temperament": "test",
-          "origin": "test"
-        },
-        {
-          "name": "test",
-          "description": "test",
-          "temperament": "test",
-          "origin": "test"
-        },
-        {
-          "name": "Cheetoh",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        },
-        {
-          "name": "Cheetohs",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        },
-        {
-          "name": "Cheetohsasdasd",
-          "description": "Spotted",
-          "temperament": "",
-          "origin": "Crossbreed"
-        }
-      ]
+      Cats: [{
+        name: "cat21",
+        description: "description1",
+        temperament: "temperament1",
+        origin: "origin1"
+      }, {
+        name: "cat21",
+        description: "description1",
+        temperament: "temperament1",
+        origin: "origin1"
+      }]
     }
   }
-}
+};
 
-const getSingleCat = {
-  id: 'get single cat',
+const testCaseB = {
+  id: 'Test case B',
   query: `
-    {
+    query {
       Cat(id:"1") {
         name
         description
@@ -186,44 +48,114 @@ const getSingleCat = {
         origin
       }
     }
-
-    `,
+  `,
   variables: {},
-
-  // injecting the mock movie service with canned responses
-  context: { service: mockService },
-
-  // expected result
+  context: {},
   expected: {
     data: {
-      "Cat": {
-        "name": "test",
-        "description": "test",
-        "temperament": "test",
-        "origin": "test"
+      Cat: {
+        name: "cat21",
+        description: "description1",
+        temperament: "temperament1",
+        origin: "origin1"
       }
     }
   }
-}
-describe("Sanity check", () => {
-  it('can add two numbers', () => {
-    const sum: number = 2 + 2;
-    expect(sum).toBe(4);
-  });
-});
-/*
-describe('GraphQL query test', async () => {
-  beforeAll(async () => {
-    await initDB()
-  })
+};
 
-  const cases = [getAllCats, searchCats, getSingleCat]
+const testCaseC = {
+  id: 'Test case C',
+  query: `
+    query {
+      SearchCats(search:"t") {
+        name
+        description
+        temperament
+        origin
+      }
+    }
+  `,
+  variables: {},
+  context: {},
+  expected: {
+    data: {
+      SearchCats: [{
+        name: "cat21",
+        description: "description1",
+        temperament: "temperament1",
+        origin: "origin1"
+      }, {
+        name: "cat21",
+        description: "description1",
+        temperament: "temperament1",
+        origin: "origin1"
+      }]
+    }
+  }
+};
+
+describe('Schema', () => {
+  // Array of case types
+  const cases = [testCaseA, testCaseB, testCaseC];
+
+  const mocks = {
+    Boolean: () => false,
+    ID: () => '1',
+    Int: () => 1,
+    Float: () => 12.34,
+    String: () => 'Dog',
+    Cat: () => ({
+      name: "cat21",
+      description: "description1",
+      temperament: "temperament1",
+      origin: "origin1"
+    }),
+    Cats: () => ([{
+      name: "cat21",
+      description: "description1",
+      temperament: "temperament1",
+      origin: "origin1"
+    }, {
+      name: "cat21",
+      description: "description1",
+      temperament: "temperament1",
+      origin: "origin1"
+    }]),
+    SearchCats: () => ([{
+      name: "cat21",
+      description: "description1",
+      temperament: "temperament1",
+      origin: "origin1"
+    }, {
+      name: "cat21",
+      description: "description1",
+      temperament: "temperament1",
+      origin: "origin1"
+    }])
+  }
+
+  // Here we specify the return payloads of mocked types
+  addMockFunctionsToSchema({
+    schema: schema,
+    mocks: mocks
+  });
+
+  test('has valid type definitions', async () => {
+    expect(async () => {
+      const MockServer = mockServer(schema, mocks);
+
+      await MockServer.query(`{ __schema { types { name } } }`);
+    }).not.toThrow();
+  });
+
   cases.forEach(obj => {
-    const { id, query, variables, expected } = obj
+    const { id, query, variables, context: ctx, expected } = obj;
+
     test(`query: ${id}`, async () => {
-      const result = await graphql(schema, query, null, request(app).get('/graphql'), variables)
-      await expect(result).toEqual(expected)
-    })
-  })
-})
-*/
+      return await expect(
+        graphql(schema, query, null, { ctx }, variables)
+      ).resolves.toEqual(expected);
+    });
+  });
+
+});
