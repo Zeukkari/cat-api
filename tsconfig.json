@@ -19,5 +19,6 @@
   "include": ["src/**/*.ts", "index.ts"],
   "exclude": ["node_modules"],
   "experimentalDecorators": true,
-  "emitDecoratorMetadata": true
+  "emitDecoratorMetadata": true,
+  "preset": "ts-jest"
 }
