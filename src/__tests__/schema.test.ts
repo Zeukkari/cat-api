@@ -7,6 +7,7 @@ import {
 import { schema } from '../schema'
 
 const testCaseA = {
+  context: {},
   id: 'Test case A',
   query: `
     query {
@@ -19,25 +20,36 @@ const testCaseA = {
     }
   `,
   variables: {},
-  context: {},
+
   expected: {
     data: {
       Cats: [{
-        name: "cat21",
         description: "description1",
+        name: "cat21",
+        origin: "origin1",
         temperament: "temperament1",
-        origin: "origin1"
       }, {
-        name: "cat21",
         description: "description1",
+        name: "cat21",
+        origin: "origin1",
         temperament: "temperament1",
-        origin: "origin1"
       }]
     }
   }
 };
 
 const testCaseB = {
+  context: {},
+  expected: {
+    data: {
+      Cat: {
+        description: "description1",
+        name: "cat21",
+        origin: "origin1",
+        temperament: "temperament1",
+      }
+    }
+  },
   id: 'Test case B',
   query: `
     query {
@@ -50,20 +62,25 @@ const testCaseB = {
     }
   `,
   variables: {},
-  context: {},
-  expected: {
-    data: {
-      Cat: {
-        name: "cat21",
-        description: "description1",
-        temperament: "temperament1",
-        origin: "origin1"
-      }
-    }
-  }
 };
 
 const testCaseC = {
+  context: {},
+  expected: {
+    data: {
+      SearchCats: [{
+        description: "description1",
+        name: "cat21",
+        origin: "origin1",
+        temperament: "temperament1",
+      }, {
+        description: "description1",
+        name: "cat21",
+        origin: "origin1",
+        temperament: "temperament1",
+      }]
+    }
+  },
   id: 'Test case C',
   query: `
     query {
@@ -76,22 +93,6 @@ const testCaseC = {
     }
   `,
   variables: {},
-  context: {},
-  expected: {
-    data: {
-      SearchCats: [{
-        name: "cat21",
-        description: "description1",
-        temperament: "temperament1",
-        origin: "origin1"
-      }, {
-        name: "cat21",
-        description: "description1",
-        temperament: "temperament1",
-        origin: "origin1"
-      }]
-    }
-  }
 };
 
 describe('Schema', () => {
@@ -100,44 +101,44 @@ describe('Schema', () => {
 
   const mocks = {
     Boolean: () => false,
-    ID: () => '1',
-    Int: () => 1,
-    Float: () => 12.34,
-    String: () => 'Dog',
     Cat: () => ({
-      name: "cat21",
       description: "description1",
+      name: "cat21",
+      origin: "origin1",
       temperament: "temperament1",
-      origin: "origin1"
     }),
     Cats: () => ([{
-      name: "cat21",
       description: "description1",
+      name: "cat21",
+      origin: "origin1",
       temperament: "temperament1",
-      origin: "origin1"
     }, {
-      name: "cat21",
       description: "description1",
+      name: "cat21",
+      origin: "origin1",
       temperament: "temperament1",
-      origin: "origin1"
     }]),
+    Float: () => 12.34,
+    ID: () => '1',
+    Int: () => 1,
     SearchCats: () => ([{
-      name: "cat21",
       description: "description1",
+      name: "cat21",
+      origin: "origin1",
       temperament: "temperament1",
-      origin: "origin1"
     }, {
-      name: "cat21",
       description: "description1",
+      name: "cat21",
+      origin: "origin1",
       temperament: "temperament1",
-      origin: "origin1"
-    }])
+    }]),
+    String: () => 'Dog',
   }
 
   // Here we specify the return payloads of mocked types
   addMockFunctionsToSchema({
-    schema: schema,
-    mocks: mocks
+    mocks,
+    schema,
   });
 
   test('has valid type definitions', async () => {
@@ -152,7 +153,7 @@ describe('Schema', () => {
     const { id, query, variables, context: ctx, expected } = obj;
 
     test(`query: ${id}`, async () => {
-      return await expect(
+      return expect(
         graphql(schema, query, null, { ctx }, variables)
       ).resolves.toEqual(expected);
     });

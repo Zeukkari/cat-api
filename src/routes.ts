@@ -1,6 +1,6 @@
 
-import { Cats } from './models/Cat';
 import { Sequelize } from 'sequelize-typescript';
+import { Cats } from './models/Cat';
 const Op = Sequelize.Op;
 
 export async function list(req, res, next) {
@@ -42,10 +42,10 @@ export async function get(req, res, next) {
 export async function create(req, res, next) {
   try {
     const cats = await Cats.create({
-      name: req.body.name,
       description: req.body.description,
-      temperament: req.body.temperament,
+      name: req.body.name,
       origin: req.body.origin,
+      temperament: req.body.temperament,
     })
     res.status(201).json(cats);
   }

@@ -1,19 +1,17 @@
 import { createServer } from 'http';
-import { initDB } from './db'
 import { app } from './app'
+import { initDB } from './db'
 
-
-export const server = (async () => {
-  initDB()
+const server = (async () => {
+  await initDB()
   const port = process.env.PORT || 8000;
 
   createServer(app)
     .listen(
       port,
+      // tslint:disable-next-line: no-console
       () => console.info(`Server running on port ${port}`)
     );
 })
 
-server()
-
-export default server
+export default server()

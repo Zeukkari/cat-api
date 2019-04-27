@@ -1,68 +1,72 @@
 import 'cross-fetch/polyfill'
-import { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLSchema } from 'graphql'
 import * as dotenv from 'dotenv'
+import { GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql'
 dotenv.config()
 
 const BASE_URL = process.env.BASE_URL
 
 if (BASE_URL === undefined) {
-  throw 'ERROR: BASE_URL missing'
+  throw new Error('ERROR: BASE_URL missing')
   process.exit()
 }
 
 const CatType = new GraphQLObjectType({
-  name: 'Cat',
   description: 'A cat breed',
+  name: 'Cat',
+
   fields: () => ({
-    name: {
-      type: GraphQLString,
-      description: 'Cat breed name',
-      resolve: cat => cat.name
-    },
     description: {
-      type: GraphQLString,
       description: 'Cat breed description',
-      resolve: cat => cat.description
-    },
-    temperament: {
+      resolve: cat => cat.description,
       type: GraphQLString,
-      description: 'Cat breed temperament',
-      resolve: cat => cat.temperament
+    },
+    name: {
+      description: 'Cat breed name',
+      resolve: cat => cat.name,
+      type: GraphQLString,
     },
     origin: {
-      type: GraphQLString,
       description: 'Cat breed origin',
-      resolve: cat => cat.origin
-    }
+      resolve: cat => cat.origin,
+      type: GraphQLString,
+    },
+    temperament: {
+      description: 'Cat breed temperament',
+      resolve: cat => cat.temperament,
+      type: GraphQLString,
+    },
   })
 })
 
 const QueryType = new GraphQLObjectType({
-  name: 'Query',
   description: 'Root query of all',
+  name: 'Query',
+
   fields: () => ({
-    Cats: {
-      type: new GraphQLList(CatType),
-      description: 'All cat',
-      resolve: (root, args) =>
-        fetch(`${BASE_URL}/cats`)
-          .then(response => response.json())
-          .then(data => data)
-    },
     Cat: {
-      type: CatType,
       args: {
         id: {
           type: GraphQLString
         }
       },
-      resolve: (root, args) =>
+      resolve: (root, args) => (
         fetch(`${BASE_URL}/cats/${args.id}`)
           .then(response => response.json())
           .then(data => data)
+      ),
+      type: CatType,
     },
-    SearchCats: {
+    Cats: {
+      description: 'All cat',
+      resolve: (root, args) => (
+        fetch(`${BASE_URL}/cats`)
+          .then(response => response.json())
+          .then(data => data)
+      ),
       type: new GraphQLList(CatType),
+    },
+
+    SearchCats: {
       args: {
         search: {
           type: GraphQLString
@@ -77,7 +81,8 @@ const QueryType = new GraphQLObjectType({
         })
           .then(response => response.json())
           .then(data => data)
-      }
+      },
+      type: new GraphQLList(CatType),
     }
   })
 })

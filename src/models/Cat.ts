@@ -1,6 +1,6 @@
 import { Column, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
 
-export interface CatAttributes {
+export interface ICatAttributes {
   id?: number;
   name: string;
   description: string;
@@ -15,23 +15,23 @@ export interface CatAttributes {
 export class Cats extends Model<Cats> {
 
   @Column
-  name!: string;
+  public name!: string;
 
   @Column
-  origin!: string;
+  public origin!: string;
 
   @Column
-  description!: string;
+  public description!: string;
 
   @Column
-  temperament!: string;
+  public temperament!: string;
 
   @CreatedAt
   @Column
-  createdAt!: Date;
+  public createdAt!: Date;
 
   @UpdatedAt
   @Column
-  updatedAt!: Date;
+  public updatedAt!: Date;
 
 }

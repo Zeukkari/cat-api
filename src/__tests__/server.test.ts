@@ -1,26 +1,6 @@
-const request = require('supertest');
-const express = require('express');
-const { app } = require('../app')
-const { initDB } = require('../db')
-
-describe("Server test", () => {
-  it('can can use express', () => {
-    const app = express();
-
-    app.get('/user', function (req, res) {
-      res.status(200).json({ name: 'john' });
-    });
-
-    request(app)
-      .get('/user')
-      .expect('Content-Type', /json/)
-      .expect('Content-Length', '15')
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-      });
-  });
-});
+import request = require('supertest')
+import { app } from '../app'
+import { initDB } from '../db'
 
 describe('Test the root path', () => {
 
@@ -58,10 +38,10 @@ describe('Test the root path', () => {
     const response = await request(app).get('/api/cats/1');
     expect(response.statusCode).toBe(200);
     expect(response.body).toMatchObject({
-      "name": "test",
       "description": "test",
+      "name": "test",
+      "origin": "test",
       "temperament": "test",
-      "origin": "test"
     })
   });
 

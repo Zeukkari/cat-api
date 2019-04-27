@@ -7,7 +7,7 @@ dotenv.config()
 const dbUrl = process.env.DATABASE_URL
 
 if (dbUrl === undefined) {
-  throw 'ERROR: DATABASE_URL missing'
+  throw new Error('ERROR: DATABASE_URL missing')
 }
 
 export const db = new Sequelize({ url: dbUrl, logging: false });

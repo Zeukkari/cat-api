@@ -1,8 +1,17 @@
 {
-  "extends": "tslint-config-standard",
+  "defaultSeverity": "error",
+
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-standard",
+    "tslint-config-prettier"
+  ],
+  "jsRules": {},
   "rules": {
+    "member-ordering":false,
     "trailing-comma": true,
     "await-promise": false,
     "space-before-function-paren": false
-  }
+  },
+  "rulesDirectory": []
 }
