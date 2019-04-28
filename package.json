@@ -79,6 +79,7 @@
     "codecov": "^3.3.0",
     "graphql-tools": "^4.0.4",
     "jest": "^24.7.1",
+    "jest-sonar-reporter": "^2.0.0",
     "prettier": "^1.17.0",
     "sequelize-test-helpers": "^1.1.0",
     "sinon": "^7.3.2",
@@ -87,6 +88,7 @@
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1"
+    "tslint-config-standard": "^8.0.1",
+    "tslint-sonarts": "^1.9.0"
   }
 }
