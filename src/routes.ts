@@ -54,12 +54,17 @@ export async function create(req, res, next) {
   }
 }
 
-export async function remove(req, res) {
+export async function remove(req, res, next) {
   try {
-    const cat = await Cats.findByPk(req.params.catId)
-    res.status(200).json(cat);
+    const catId = req.params.catId
+    await Cats.destroy({
+      where: {
+        id: catId
+      }
+    })
+    res.status(201).json({deleted: catId});
   }
   catch (e) {
-    res.status(400).send(e)
+    next(e)
   }
 }
