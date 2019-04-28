@@ -47,8 +47,8 @@ describe('Test the root path', () => {
 
   test('It should return search results', async () => {
     const response = await request(app).get('/api/cats/search?search=te');
-    expect(response.statusCode).toBe(200);
     const data = response.body
+    expect(response.statusCode).toBe(200);
     expect(data.length).toBeGreaterThan(0)
   });
 })
