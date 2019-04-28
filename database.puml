@@ -15,6 +15,7 @@ primary_key(id) INTEGER
 name TEXT
 description TEXT
 temperament TEXT
+origin TEXT
 }
 
 

@@ -1,4 +1,6 @@
-# Cat API / fullstack exercise ![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master)
+# Cat API / fullstack exercise ![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master) [![Codecov Coverage](https://img.shields.io/codecov/c/github/zeukkari/cat-api/master.svg?style=flat-square)](https://codecov.io/gh/zeukkari/cat-api/) [![David](https://img.shields.io/david/zeukkari/cat-api.svg)](https://img.shields.io/david/zeukkari/cat-api.svg) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
+
 
 Demo: https://radiant-wave-74426.herokuapp.com/
 

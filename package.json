@@ -18,7 +18,7 @@
   },
   "keywords": [],
   "author": "Timo Aho",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
@@ -65,7 +65,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zeukkari/harkkaprojekti4.git"
+    "url": "https://github.com/Zeukkari/cat-api.git"
   },
   "devDependencies": {
     "@types/cors": "^2.8.4",
