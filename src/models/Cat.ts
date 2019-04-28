@@ -1,4 +1,4 @@
-import { Column, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript';
+import { Column, CreatedAt, Model, Table, UpdatedAt } from 'sequelize-typescript'
 
 export interface ICatAttributes {
   id?: number;
@@ -8,7 +8,7 @@ export interface ICatAttributes {
   origin: string;
   createdAt?: Date;
   updatedAt?: Date;
-};
+}
 
 
 @Table
