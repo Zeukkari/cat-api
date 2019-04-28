@@ -1,4 +1,6 @@
-# Cat API / fullstack exercise ![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master) [![Codecov Coverage](https://img.shields.io/codecov/c/github/zeukkari/cat-api/master.svg?style=flat-square)](https://codecov.io/gh/zeukkari/cat-api/) [![David](https://img.shields.io/david/zeukkari/cat-api.svg)](https://img.shields.io/david/zeukkari/cat-api.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Zeukkari_cat-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=Zeukkari_cat-api) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+# Cat API / fullstack exercise 
+
+![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master) [![Codecov Coverage](https://img.shields.io/codecov/c/github/zeukkari/cat-api/master.svg?style=flat-square)](https://codecov.io/gh/zeukkari/cat-api/) [![David](https://img.shields.io/david/zeukkari/cat-api.svg)](https://img.shields.io/david/zeukkari/cat-api.svg) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Zeukkari_cat-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=Zeukkari_cat-api) [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 
 
