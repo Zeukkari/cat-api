@@ -37,6 +37,7 @@
     "typescript": "^3.4.5"
   },
   "jest": {
+    "testEnvironment": "node",
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
@@ -45,7 +46,7 @@
         "tsConfig": "tsconfig.json"
       }
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -56,7 +57,13 @@
     ],
     "collectCoverage": true,
     "coverageReporters": [
+      "text",
+      "json",
       "lcov"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,js}",
+      "!src/**/*.d.ts"
     ]
   },
   "engines": {
