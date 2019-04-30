@@ -34,13 +34,13 @@ export default function resolvers() {
   return {
     RootQuery: {
       Cat(root, { id }, context) {
-        return getCat(root, { id }, context)
+        return getCat(BASE_URL, { id }, context)
       },
       Cats(root, args, context) {
-        return getCats(root, {}, context)
+        return getCats(BASE_URL, {}, context)
       },
       SearchCats(root, { search }, context) {
-        return searchCats(root, { search }, context)
+        return searchCats(BASE_URL, { search }, context)
       }
     },
   }
