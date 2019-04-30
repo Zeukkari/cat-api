@@ -36,11 +36,6 @@ describe('Test API endpoints', () => {
     expect(data.length).toBeGreaterThan(0)
   });
 
-  test('It should return http 400 when search query missing', async () => {
-    const response = await request(app).get('/api/cats/search');
-    expect(response.statusCode).toBe(400);
-  });
-
     test('It should response the GET method for /api/cats', async () => {
       const response = await request(app).get('/api/cats');
       expect(response.statusCode).toBe(200);
