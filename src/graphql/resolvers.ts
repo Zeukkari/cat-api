@@ -10,14 +10,14 @@ if (BASE_URL === undefined) {
 
 export const getCat = (root, args, context) => {
   return fetch(`${root}/cats/${args.id}`)
-  .then(response => response.json())
-  .then(data => data)
+    .then(response => response.json())
+    .then(data => data)
 }
 
 export const getCats = (root, args, context) => {
   return fetch(`${root}/cats`)
-  .then(response => response.json())
-  .then(data => data)
+    .then(response => response.json())
+    .then(data => data)
 }
 
 export const searchCats = (root, args, context) => {
@@ -41,7 +41,7 @@ export default function resolvers() {
       },
       SearchCats(root, { search }, context) {
         return searchCats(BASE_URL, { search }, context)
-      }
+      },
     },
   }
 }

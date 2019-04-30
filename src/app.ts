@@ -1,11 +1,11 @@
 import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
-import express = require('express');
+import express = require('express')
 import * as GraphQLHTTP from 'express-graphql'
 import { create, get, list, remove, search } from './routes'
 import { schema } from './schema'
 
-export const app = express();
+export const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
@@ -25,11 +25,10 @@ app.use(
 
 // REST API end points
 app.get('/api', (req, res) => {
-  res.status(200).json({ message: 'welcome to cat api' });
-});
-app.get('/api/cats', list);
-app.get('/api/cats/search', search);
+  res.status(200).json({ message: 'welcome to cat api' })
+})
+app.get('/api/cats', list)
+app.get('/api/cats/search', search)
 app.post('/api/cats', create)
 app.get('/api/cats/:catId', get)
 app.delete('/api/cats/:catId', remove)
-
