@@ -1,10 +1,16 @@
-import { graphql } from 'graphql'
 import {
   addMockFunctionsToSchema,
+  makeExecutableSchema,
   mockServer
 } from 'graphql-tools';
 
-import { schema } from '../schema'
+import resolvers from '../graphql/resolvers'
+import typeDefs from '../graphql/typeDefs'
+
+export const schema = makeExecutableSchema({
+  resolvers: resolvers(),
+  typeDefs,
+});
 
 const testCaseA = {
   context: {},
@@ -96,8 +102,6 @@ const testCaseC = {
 };
 
 describe('Schema', () => {
-  // Array of case types
-  const cases = [testCaseA, testCaseB, testCaseC];
 
   const mocks = {
     Boolean: () => false,
@@ -136,10 +140,12 @@ describe('Schema', () => {
   }
 
   // Here we specify the return payloads of mocked types
+
   addMockFunctionsToSchema({
     mocks,
     schema,
   });
+
 
   test('has valid type definitions', async () => {
     expect(async () => {
@@ -149,14 +155,28 @@ describe('Schema', () => {
     }).not.toThrow();
   });
 
-  cases.forEach(obj => {
-    const { id, query, variables, context: ctx, expected } = obj;
+  test('has valid testCaseA', async () => {
+    expect(async () => {
+      const MockServer = mockServer(schema, mocks);
 
-    test(`query: ${id}`, async () => {
-      return expect(
-        graphql(schema, query, null, { ctx }, variables)
-      ).resolves.toEqual(expected);
-    });
+      await MockServer.query(`${testCaseA}`);
+    }).not.toThrow();
+  });
+
+  test('has valid testCaseB', async () => {
+    expect(async () => {
+      const MockServer = mockServer(schema, mocks);
+
+      await MockServer.query(`${testCaseB}`);
+    }).not.toThrow();
+  });
+
+  test('has valid testCaseC', async () => {
+    expect(async () => {
+      const MockServer = mockServer(schema, mocks);
+
+      await MockServer.query(`${testCaseC}`);
+    }).not.toThrow();
   });
 
 });

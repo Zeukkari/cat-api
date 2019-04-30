@@ -2,16 +2,16 @@ import { createServer } from 'http';
 import { app } from './app'
 import { initDB } from './db'
 
-const server = (async () => {
+const port = process.env.PORT || 8000;
+
+const callback = () => {
+  // tslint:disable-next-line: no-console
+  console.info(`Server running on port ${port}`)
+}
+
+async function startServer() {
   await initDB()
-  const port = process.env.PORT || 8000;
+  return createServer(app).listen(port, callback);
+}
 
-  createServer(app)
-    .listen(
-      port,
-      // tslint:disable-next-line: no-console
-      () => console.info(`Server running on port ${port}`)
-    );
-})
-
-export default server()
+export default startServer()
