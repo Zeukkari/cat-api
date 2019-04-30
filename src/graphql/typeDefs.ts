@@ -11,7 +11,7 @@ type Cat {
 type RootQuery {
   Cat(id: String!): Cat
   Cats: [Cat]
-  SearchCats(search: String!): [Cat]
+  SearchCats(search: String = ""): [Cat]
 }
 
 # We need to tell the server which types represent the root query.

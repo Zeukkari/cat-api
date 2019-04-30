@@ -10,19 +10,15 @@ export async function list(req, res, next) {
 
 export async function search(req, res, next) {
   try {
-    if (!req.query.search) {
-      throw {code: 400, msg: 'Search query missing'}
-    } else {
-        const cats = await Cats.findAll({
-          limit: 10,
-          where: {
-            name: {
-              [Op.like]: `%${req.query.search}%`,
-            }
+      const cats = await Cats.findAll({
+        limit: 10,
+        where: {
+          name: {
+            [Op.like]: `%${req.query.search}%`,
           }
-        })
-        res.status(200).json(cats);
-    }
+        }
+      })
+      res.status(200).json(cats);
   } catch(error) {
     res.status(400).json({error})
   }
