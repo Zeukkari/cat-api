@@ -2,11 +2,62 @@
   "name": "cat-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "author": "Timo Aho",
+  "license": "MIT",
+  "keywords": [],
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zeukkari/cat-api.git"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.5",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.16.1",
+    "@types/express-graphql": "^0.8.0",
+    "@types/fetch-mock": "^7.2.3",
+    "@types/graphql": "^14.2.0",
+    "@types/jest": "^24.0.12",
+    "@types/node": "^11.13.8",
+    "@types/sequelize": "^4.27.48",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.0.2",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.2.1",
+    "graphql-tools": "^4.0.4",
+    "nodemon": "^1.18.11",
+    "pg": "^7.10.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.7.5",
+    "sequelize-typescript": "^0.6.10",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "codecov": "^3.3.0",
+    "jest": "^24.7.1",
+    "jest-fetch-mock": "^2.1.2",
+    "jest-sonar-reporter": "^2.0.0",
+    "prettier": "^1.17.0",
+    "superagent": "^5.0.3",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-sonarts": "^1.9.0"
+  },
   "scripts": {
     "build": "npm run ts:build && npm run build:client",
     "build:client": "cd client && npm run build",
-    "dev": "ts-node src/server.ts",
+    "dev": "nodemon -V --watch src ts-node src/server.ts",
     "lint": "tslint \"src/**/*.{ts,tsx}\" --project tsconfig.json",
     "lint:fix": "tslint \"src/**/*.{ts,tsx}\" --project tsconfig.json --fix",
     "postinstall": "cd client && npm install",
@@ -16,24 +67,6 @@
     "test:coverage": "jest src --coverage && codecov",
     "ts:build": "tsc",
     "ts:watch": "tsc -w"
-  },
-  "keywords": [],
-  "author": "Timo Aho",
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "cross-fetch": "^3.0.2",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "express-graphql": "^0.8.0",
-    "graphql": "^14.2.1",
-    "nodemon": "^1.18.11",
-    "pg": "^7.10.0",
-    "reflect-metadata": "^0.1.13",
-    "sequelize": "^5.7.5",
-    "sequelize-typescript": "^0.6.10",
-    "typescript": "^3.4.5"
   },
   "jest": {
     "automock": false,
@@ -66,40 +99,8 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{ts,js}",
-      "!src/**/*.d.ts"
+      "!src/**/*.d.ts",
+      "!src/**/*.test.ts"
     ]
-  },
-  "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Zeukkari/cat-api.git"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.4",
-    "@types/dotenv": "^6.1.1",
-    "@types/express": "^4.16.1",
-    "@types/express-graphql": "^0.6.2",
-    "@types/fetch-mock": "^7.2.3",
-    "@types/graphql": "^14.2.0",
-    "@types/jest": "^24.0.12",
-    "@types/sequelize": "^4.27.48",
-    "codecov": "^3.3.0",
-    "graphql-tools": "^4.0.4",
-    "jest": "^24.7.1",
-    "jest-fetch-mock": "^2.1.2",
-    "jest-sonar-reporter": "^2.0.0",
-    "prettier": "^1.17.0",
-    "superagent": "^5.0.3",
-    "supertest": "^4.0.2",
-    "ts-jest": "^24.0.2",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-eslint-rules": "^5.4.0",
-    "tslint-sonarts": "^1.9.0"
   }
 }
