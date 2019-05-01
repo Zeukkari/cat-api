@@ -1,9 +1,6 @@
-# Cat API / fullstack exercise 
+# Cat API / fullstack exercise
 
 ![Build Status](https://travis-ci.com/Zeukkari/cat-api.svg?branch=master) [![Codecov Coverage](https://img.shields.io/codecov/c/github/zeukkari/cat-api/master.svg?style=flat-square)](https://codecov.io/gh/zeukkari/cat-api/) [![David](https://img.shields.io/david/zeukkari/cat-api.svg)](https://img.shields.io/david/zeukkari/cat-api.svg) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Zeukkari_cat-api&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Zeukkari_cat-api) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Zeukkari_cat-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=Zeukkari_cat-api) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Zeukkari_cat-api&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Zeukkari_cat-api) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Zeukkari_cat-api&metric=security_rating)](https://sonarcloud.io/dashboard?id=Zeukkari_cat-api)
-
-
-
 
 
 Demo: https://radiant-wave-74426.herokuapp.com/
@@ -12,33 +9,11 @@ GraphQL playground: https://radiant-wave-74426.herokuapp.com/graphql
 
 ## Getting Started
 
-Install node.js v10.x.x.
+Install/setup Docker.
 
-Set up PostgreSQL server somewhere. The demo deployment of this project uses [https://www.elephantsql.com/](https://www.elephantsql.com/)
+Init .env file `cp .env.EXAMPLE .env`
 
-```
-cp .env.EXAMPLE .env
-```
-
-Edit .env file and update DATABASE_URL field to point to your database instance.
-
-Install dependencies:
-
-```
-npm install
-```
-
-Build client:
-
-```
-npm run build:client
-```
-
-Start development server:
-
-```
-npm run serve
-```
+Run docker-compose `docker-compose up`
 
 The demo should now be accessible at [http://localhost:8000/index.html](http://localhost:8000/index.html).
 
